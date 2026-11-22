@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ if not .Paginator.HasPrev }}{{ partial "hero.html" . }}{{ end }}
+<section class="section wrap" id="latest">
+  <div class="section__head">
+    <div><p class="eyebrow">{{ site.Params.postsEyebrow | default "Journal" }}</p><h2>{{ site.Params.postsTitle | default "Latest posts" }}</h2></div>
+  </div>
+  {{ $pages := where site.RegularPages "Type" "in" (site.Params.mainSections | default (slice "posts")) }}
+  {{ $pag := .Paginate $pages }}
+  <div class="post-grid">
+    {{ range $pag.Pages }}{{ partial "post-card.html" . }}{{ end }}
+  </div>
+  {{ partial "pagination.html" $pag }}
+</section>
+{{ partial "newsletter.html" . }}
+{{ end }}

@@ -1,0 +1,17 @@
+{{ $current := . }}
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="site-title" href="{{ "/" | relURL }}">{{ with site.Params.logo }}<img src="{{ . | relURL }}" alt="{{ site.Title }}">{{ else }}{{ site.Title }}{{ end }}</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        {{ range site.Menus.main }}
+        <li><a href="{{ .URL }}"{{ if or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+    </nav>
+    <div class="site-header__actions">
+      {{ with site.Params.headerButton }}<a class="button" href="{{ .url | relURL }}">{{ .text }}</a>{{ end }}
+      <button class="icon-button nav-toggle" data-nav-toggle aria-expanded="false" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h12"/></svg></button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode | default "en" }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body{{ with site.Params.palette }} data-palette="{{ lower . }}"{{ end }}>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {{ partial "header.html" . }}
+  <main id="main">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "footer.html" . }}
+  <script>
+    document.querySelectorAll('[data-nav-toggle]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var open = document.body.classList.toggle('nav-open');
+        b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+  </script>
+</body>
+</html>

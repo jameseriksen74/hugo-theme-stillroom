@@ -1,0 +1,4 @@
+{{/* Returns the page's feature image resource: a bundle image named feature*, or a global resource from params.image. */}}
+{{ $img := "" }}
+{{ with .Resources.GetMatch "feature*" }}{{ $img = . }}{{ else }}{{ with .Params.image }}{{ with resources.Get . }}{{ $img = . }}{{ end }}{{ end }}{{ end }}
+{{ return $img }}

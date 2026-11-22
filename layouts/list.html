@@ -1,0 +1,19 @@
+{{ define "main" }}
+<header class="archive-header wrap">
+  <p class="eyebrow">{{ if eq .Kind "term" }}{{ .Data.Singular | humanize }}{{ else }}Archive{{ end }}</p>
+  <h1>{{ .Title }}</h1>
+  {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  {{ with .Content }}<div class="lede">{{ . }}</div>{{ end }}
+</header>
+<section class="section wrap">
+  {{ if eq .Kind "taxonomy" }}
+  <div class="article__footer" style="border:0;margin:0;padding:0">
+    {{ range .Pages }}<a class="tag-pill" href="{{ .RelPermalink }}">{{ .Title }} ({{ len .Pages }})</a>{{ end }}
+  </div>
+  {{ else }}
+  {{ $pag := .Paginate .Pages }}
+  <div class="post-grid">{{ range $pag.Pages }}{{ partial "post-card.html" . }}{{ end }}</div>
+  {{ partial "pagination.html" $pag }}
+  {{ end }}
+</section>
+{{ end }}

@@ -1,0 +1,25 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div>
+        <a class="site-title" href="{{ "/" | relURL }}">{{ site.Title }}</a>
+        {{ with site.Params.description }}<p>{{ . }}</p>{{ end }}
+      </div>
+      <div>
+        <h2>Explore</h2>
+        <ul>{{ range site.Menus.footer }}<li><a href="{{ .URL }}">{{ .Name }}</a></li>{{ end }}</ul>
+      </div>
+      <div>
+        <h2>Follow</h2>
+        <ul>
+          {{ range site.Params.social }}<li><a href="{{ .url }}" rel="noopener">{{ .name }}</a></li>{{ end }}
+          {{ with site.Home.OutputFormats.Get "rss" }}<li><a href="{{ .RelPermalink }}">RSS</a></li>{{ end }}
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <span>{{ with site.Copyright }}{{ . | markdownify }}{{ else }}&copy; {{ now.Year }} {{ site.Title }}{{ end }}. Built with <a href="https://gohugo.io" rel="noopener">Hugo</a>.</span>
+      {{ if not site.Params.hideCredit }}<span>Stillroom theme by <a href="https://prettythingsonline.com" rel="noopener">Pretty Things Online</a></span>{{ end }}
+    </div>
+  </div>
+</footer>

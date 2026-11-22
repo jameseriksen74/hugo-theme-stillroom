@@ -1,0 +1,17 @@
+name = "Stillroom"
+license = "MIT"
+licenselink = "https://github.com/jameseriksen74/hugo-theme-stillroom/blob/main/LICENSE"
+description = "A quiet, minimal theme with a split hero, a glassy header and lots of white space that lets your work speak. A free Hugo theme by Pretty Things Online."
+homepage = "https://github.com/jameseriksen74/hugo-theme-stillroom"
+demosite = ""
+tags = ["blog", "minimal", "responsive", "clean", "light", "dark", "magazine", "personal", "portfolio", "clean"]
+features = ["blog", "responsive", "rss", "open graph", "image processing", "color styles", "bundled fonts", "newsletter"]
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = "0.146.0"
+
+[author]
+  name = "Pretty Things Online"
+  homepage = "https://prettythingsonline.com"

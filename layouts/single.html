@@ -1,0 +1,39 @@
+{{ define "main" }}
+<article class="article">
+  <header class="article__header narrow">
+    {{ with .Params.tags }}<a class="eyebrow" href="{{ (printf "/tags/%s/" (index . 0 | urlize)) | relURL }}">{{ index . 0 }}</a>{{ end }}
+    <h1 class="article__title">{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+    {{ if ne .Type "page" }}
+    <div class="post-meta">
+      {{ with .Params.author }}<span>{{ . }}</span>{{ end }}
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (site.Params.dateFormat | default "January 2, 2006") }}</time>
+      <span>{{ .ReadingTime }} min read</span>
+    </div>
+    {{ end }}
+  </header>
+  {{ with partial "feature-image.html" . }}
+  <figure class="article__feature wrap">
+    {{ $f := .Fill "1600x900 webp" }}
+    <img src="{{ $f.RelPermalink }}" width="{{ $f.Width }}" height="{{ $f.Height }}" alt="{{ with $.Params.imageAlt }}{{ . }}{{ else }}{{ $.Title }}{{ end }}">
+    {{ with $.Params.imageCaption }}<figcaption>{{ . }}</figcaption>{{ end }}
+  </figure>
+  {{ end }}
+  <div class="content">
+    {{ .Content }}
+  </div>
+  {{ with .Params.tags }}
+  <footer class="article__footer narrow">
+    {{ range . }}<a class="tag-pill" href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+  </footer>
+  {{ end }}
+</article>
+{{ if .IsPage }}{{ with first 3 (where (site.RegularPages.Related .) "Type" .Type) }}
+<section class="related">
+  <div class="wrap">
+    <div class="section__head"><h2>Keep reading</h2></div>
+    <div class="post-grid">{{ range . }}{{ partial "post-card.html" . }}{{ end }}</div>
+  </div>
+</section>
+{{ end }}{{ end }}
+{{ end }}

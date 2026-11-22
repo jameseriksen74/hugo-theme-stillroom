@@ -1,0 +1,9 @@
+{{ with site.Params.hero }}
+<section class="hero hero--split wrap">
+<div class="hero__grid">
+<div>{{ with .eyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}<h1 class="display">{{ .heading | default site.Title | safeHTML }}</h1>{{ with .text }}<p class="lede">{{ . }}</p>{{ end }}<div class="buttons">{{ range .buttons }}<a class="button{{ if .outline }} button--outline{{ end }}" href="{{ .url | relURL }}">{{ .text }}</a>{{ end }}</div>
+</div>
+<div class="hero__media">{{ with site.Params.hero.image }}{{ with resources.Get . }}{{ $h := .Resize "1600x webp" }}<img src="{{ $h.RelPermalink }}" width="{{ $h.Width }}" height="{{ $h.Height }}" alt="" fetchpriority="high">{{ end }}{{ end }}</div>
+</div>
+</section>
+{{ end }}

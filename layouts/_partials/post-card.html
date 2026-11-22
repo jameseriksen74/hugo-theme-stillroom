@@ -1,0 +1,15 @@
+{{ $p := . }}
+<article class="post-card">
+  {{ with partial "feature-image.html" $p }}
+  <div class="post-card__media">
+    {{ $s := .Fill "800x600 webp" }}
+    <img src="{{ $s.RelPermalink }}" width="{{ $s.Width }}" height="{{ $s.Height }}" alt="{{ with $p.Params.imageAlt }}{{ . }}{{ else }}{{ $p.Title }}{{ end }}" loading="lazy">
+  </div>
+  {{ end }}
+  <div class="post-card__body">
+    {{ with $p.Params.tags }}<span class="post-card__tag">{{ index . 0 }}</span>{{ end }}
+    <h3 class="post-card__title"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+    <p class="post-card__excerpt">{{ with $p.Description }}{{ . }}{{ else }}{{ $p.Summary | plainify | truncate 140 }}{{ end }}</p>
+    <div class="post-card__meta"><time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format (site.Params.dateFormat | default "January 2, 2006") }}</time><span>{{ $p.ReadingTime }} min read</span></div>
+  </div>
+</article>

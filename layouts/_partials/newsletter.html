@@ -1,0 +1,15 @@
+{{ with site.Params.newsletter }}{{ if .enable }}
+<section class="section wrap">
+  <div class="newsletter">
+    <h2>{{ .title | default "Join the list" }}</h2>
+    <p>{{ .text | default "New posts, early news and the occasional treat, straight to your inbox." }}</p>
+    {{ with .action }}
+    <form action="{{ . }}" method="post">
+      <label class="sr-only" for="newsletter-email">Email address</label>
+      <input id="newsletter-email" name="email" type="email" placeholder="you@example.com" required>
+      <button class="button" type="submit">Subscribe</button>
+    </form>
+    {{ end }}
+  </div>
+</section>
+{{ end }}{{ end }}

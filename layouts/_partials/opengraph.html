@@ -1,0 +1,5 @@
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{ with partial "feature-image.html" . }}{{ with .Fill "1200x630 webp" }}<meta property="og:image" content="{{ .Permalink }}">{{ end }}{{ end }}
+<meta name="twitter:card" content="summary_large_image">

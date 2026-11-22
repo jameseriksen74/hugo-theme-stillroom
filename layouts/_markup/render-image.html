@@ -1,0 +1,2 @@
+{{ $src := .Destination }}{{ with .Page.Resources.Get .Destination }}{{ $src = (.Resize "1400x webp").RelPermalink }}{{ end }}
+<img src="{{ $src | safeURL }}" alt="{{ .PlainText }}"{{ with .Title }} title="{{ . }}"{{ end }} loading="lazy">
