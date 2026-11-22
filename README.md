@@ -4,7 +4,7 @@ A quiet, minimal theme with a split hero, a glassy header and lots of white spac
 
 Made with care by **[Pretty Things Online](https://prettythingsonline.com)**. Free for personal and commercial use under the MIT license.
 
-![Stillroom preview](images/mockup.png)
+![Stillroom preview](https://raw.githubusercontent.com/jameseriksen74/hugo-theme-stillroom/main/images/mockup.png)
 
 ## Features
 
@@ -41,7 +41,7 @@ Or as a Hugo module: `hugo mod init my-site`, then in `hugo.toml` add
 
 ## Configuration
 
-See [`exampleSite/hugo.toml`](exampleSite/hugo.toml) for every option. The main ones:
+See [`exampleSite/hugo.toml`](https://github.com/jameseriksen74/hugo-theme-stillroom/blob/main/exampleSite/hugo.toml) for every option. The main ones:
 
 | Setting | What it does |
 | --- | --- |
